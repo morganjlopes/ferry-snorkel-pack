@@ -43,7 +43,7 @@ body {
 }
 img, svg { max-width: 100%; display: block; }
 h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0 0 .5em; letter-spacing: -.02em; }
-h1 { font-size: clamp(2.5rem, 7.2vw, 4.9rem); font-weight: 800; }
+h1 { font-size: clamp(2.4rem, 6.4vw, 4.3rem); font-weight: 800; }
 h2 { font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 800; }
 h3 { font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
 p { margin: 0 0 1em; }
@@ -88,6 +88,8 @@ section { padding: clamp(56px, 9vw, 104px) 0; }
 .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .96rem; }
 .nav a:not(.btn):hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
 @media (max-width: 820px) { .nav a:not(.btn) { display: none; } }
+.site-header .btn { white-space: nowrap; }
+@media (max-width: 480px) { .site-header .wide { display: none; } }
 @media (max-width: 400px) { .brand span { font-size: .98rem; } .site-header .btn { padding: 9px 14px; } }
 
 /* ---------- Hero ---------- */
@@ -97,7 +99,7 @@ section { padding: clamp(56px, 9vw, 104px) 0; }
 /* Wavy underline under the highlighted word */
 .hero h1 em::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -.12em; height: .22em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4c5-5 10-5 15 0s10 5 15 0 7-4 10-2' fill='none' stroke='%23ff5a3c' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center / auto 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4q5-5 10 0t10 0t10 0t10 0' fill='none' stroke='%23ff5a3c' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center / auto 100%;
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 22px; }
 .hero-facts { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 0; margin: 0; list-style: none; font-weight: 600; font-size: .95rem; color: var(--ink-soft); }
@@ -205,7 +207,7 @@ select {
 .fins { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
 .fins label { font-size: .82rem; font-weight: 600; color: var(--ink-soft); display: block; }
 .fins select { margin-top: 4px; min-height: 44px; padding-block: 8px; font-size: .95rem; }
-.check { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; cursor: pointer; }
+.field > label.check { display: flex; gap: 12px; align-items: flex-start; font: 500 1rem var(--body); cursor: pointer; margin: 0; }
 .check input { width: 22px; height: 22px; accent-color: var(--sea); margin: 2px 0 0; flex: none; }
 .total-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: var(--foam); border-top: 2px solid var(--ink); padding: 18px 24px; }
 .total-bar .sum { font-size: .9rem; color: var(--ink-soft); }
@@ -313,7 +315,7 @@ footer a { color: #d9f1ec; }
       <a href="#prices">Prices</a>
       <a href="#docks">Docks</a>
       <a href="#faq">FAQ</a>
-      <a class="btn small" href="#reserve">Reserve a pack</a>
+      <a class="btn small" href="#reserve">Reserve<span class="wide"> a pack</span></a>
     </nav>
   </div>
 </header>
@@ -345,6 +347,9 @@ footer a { color: #d9f1ec; }
       <svg viewBox="0 0 520 460" role="img" aria-label="A ferry on the water with a bright snorkel pack waiting on the dock">
         <rect x="10" y="10" width="500" height="440" rx="36" fill="#d9f1ec" stroke="#0b2f3a" stroke-width="3"/>
         <circle cx="400" cy="110" r="46" fill="#ffc94a" stroke="#0b2f3a" stroke-width="3"/>
+        <!-- clip the scene to the rounded frame so the drifting water stays inside -->
+        <defs><clipPath id="scene-clip"><rect x="11.5" y="11.5" width="497" height="437" rx="34.5"/></clipPath></defs>
+        <g clip-path="url(#scene-clip)">
         <!-- distant island -->
         <path d="M40 232c40-46 86-52 130-20 20-16 50-14 70 20z" fill="#0e7c86" opacity=".35"/>
         <!-- ferry -->
@@ -389,6 +394,8 @@ footer a { color: #d9f1ec; }
             <text x="241" y="300" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="13" fill="#0b2f3a">B-14</text>
           </g>
         </g>
+        </g>
+        <rect x="10" y="10" width="500" height="440" rx="36" fill="none" stroke="#0b2f3a" stroke-width="3"/>
         <!-- gulls -->
         <path d="M92 92c8-8 14-8 20 0 6-8 12-8 20 0M150 62c6-6 10-6 15 0 5-6 9-6 15 0" fill="none" stroke="#0b2f3a" stroke-width="3" stroke-linecap="round"/>
       </svg>
